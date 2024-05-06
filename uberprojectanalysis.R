@@ -186,21 +186,3 @@ saveRDS(heatmap_bases_day, file = "Heatmap of trips by Base and day.rds")
 
 
 
-library(rpart.plot)
-# Prediction model
-bind_table <- rbind(uber_data_sep_14, uber_data_may_14, uber_data_jun_14,
-                    uber_data_aug_14, uber_data_jul_14, uber_data_apr_14)
-prediction_model <- bind_table
-prediction_model <- cbind(prediction_model, model.matrix(~Base, Data = prediction_model)[,-1])
-set.seed(123)
-train <- sample(nrow(prediction_model), 0.7 * nrow(prediction_model))
-train_data <- prediction_model[train,]
-test_data <- prediction_model[-train,]
-train_data_subset <- train_data[1:30, ]
-test_data_subset<-test_data[1:30, ]
-dim(train_data_subset)
-tree_model <- rpart(Date ~ Lon + Lat + Time + Base, data = train_data_subset, method = "class")
-rpart.plot(tree_model, box.palette = "Greens") 
-
-
-
