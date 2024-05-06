@@ -3,7 +3,7 @@
 <img src = "Images/uber-one.webp" height = 300, width = 500>  
 
 # Introduction
-In this project, I aim to analyze Uber trip data to uncover patterns and insights regarding trip frequencies, temporal trends, and geographical distribution. By leveraging various data visualization techniques, including pivot tables, bar charts, heatmaps, and interactive maps through a Shiny application, I provide an insightful exploration of Uber trip data across different dimensions such as time of day, day of the week, month, and geographical location.
+In this project, I aim to analyze Uber trip data to uncover patterns and insights regarding trip frequencies, temporal trends, and geographical distribution. By leveraging various data visualization techniques, including pivot tables, bar charts, heatmaps, and interactive maps through a Shiny application, I provide an insightful exploration of Uber trip data across different dimensions such as time of day, day of the week, month, Base(the starting points from which the uber trips originate) and geographical location.
 
 # Data cleaning
 1. I read all the CSV data, combined them, and saved the data in RDS since it is a large data and it is hard to read everything 
