@@ -177,3 +177,6 @@ server <- function(input, output, session) {
 # Run the application
 shinyApp(ui = ui, server = server)
 ```
+
+# Github link
+[https://ruthgirma.shinyapps.io/UberProjectRideAnalysis/]
