@@ -104,7 +104,7 @@ ggplot(heatmap_month_week, aes(x = factor(Weekday, levels = c("Monday", "Tuesday
 saveRDS(heatmap_month_week, file = "Heatmap of trips by month and week.rds")
 
 ```
-4. Heat map Bases and Day of Week
+4. Heat map Bases and Day of the Week
 For the heat maps, I first created a pivot table that displays the number of trips by Base and day. I also saved the heatmap as an RDS file to save space.
 
 ```
@@ -122,3 +122,58 @@ saveRDS(heatmap_bases_day, file = "Heatmap of trips by Base and day.rds")
 
 ```
 # Geospatial mapping
+1. Load all the necessary libraries to complete the geospatial mapping
+```
+library(shiny)
+library(leaflet)
+library(dplyr)
+library(shinyjs)
+```
+2. Define the UI
+```
+ui <- fluidPage(
+  # Use shinyjs to reset map
+  useShinyjs(),
+  extendShinyjs(text = "shinyjs.resetMap = function() { map.setView([40.75, -73.98], 10); }", functions = list(
+    resetMap = JS("function() { map.setView([40.75, -73.98], 10); }")
+  )),
+
+  # Reset map button and measure button
+  tags$div(
+    id = "buttons",
+    actionButton("reset", "Reset Map"),
+    actionButton("measure", "Measure Distance")
+  ),
+  
+  # Leaflet map and info box
+  mainPanel(
+    leafletOutput("map"),
+    verbatimTextOutput("info")
+  )
+)
+```
+3. Define the server
+```
+server <- function(input, output, session) {
+  # Initialize leaflet map with default view
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      setView(lng = -73.98, lat = 40.75, zoom = 10)
+  })
+  
+  # Assuming your large dataset is stored in 'large_data'
+  # Subset the first 50 observations for demonstration
+  observe({
+    subset_data <- combined_uber_data[1:50, ]
+    
+    # Add markers to map
+    leafletProxy("map", data = subset_data) %>%
+      clearMarkers() %>%
+      addMarkers(lng = ~Lon, lat = ~Lat, popup = ~Base)
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+```
