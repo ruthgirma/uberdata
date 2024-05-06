@@ -1,6 +1,6 @@
 # Uberdata analysis  
 # By: Ruth Girma  
-<img src = "Images/uber-one.webp.png" height = 300, width = 500>  
+<img src = "Images/uber-one.web.png" height = 300, width = 500>  
 
 # Introduction
 In this project, I aim to analyze Uber trip data to uncover patterns and insights regarding trip frequencies, temporal trends, and geographical distribution. By leveraging various data visualization techniques, including pivot tables, bar charts, heatmaps, and interactive maps through a Shiny application, I provide an insightful exploration of Uber trip data across different dimensions such as time of day, day of the week, month, and geographical location.
